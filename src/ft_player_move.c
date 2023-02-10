@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 05:26:12 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 06:01:32 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/10 07:47:25 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ static void	ft_game_win(void)
 	exit(EXIT_SUCCESS);
 }
 
+static char	*ft_get_asset_name(int keycode)
+{
+	if (keycode == keycode_w)
+		return (PLAYER_UP_1);
+	else if (keycode == keycode_s)
+		return (PLAYER_DOWN_1);
+	else if (keycode == keycode_a)
+		return (PLAYER_LEFT_1);
+	else if (keycode == keycode_d)
+		return (PLAYER_RIGHT_1);
+	else
+		return (NULL);
+}
+
 static void	ft_print_move_count(t_data *data)
 {
 	char	*move_count;
@@ -31,7 +45,7 @@ static void	ft_print_move_count(t_data *data)
 
 	move_count = ft_itoa(data->player_move_count);
 	color = 0xffffff;
-	ft_put_image_to_window(data, PLAYER_MOVE_COUNT, 0, 0);
+	ft_put_image(data, PLAYER_MOVE_COUNT, 0, 0);
 	if (data->player_move_count < 10)
 		mlx_string_put(data->mlx, data->mlx_window, 23, 50, color, move_count);
 	else if (data->player_move_count < 100)
@@ -42,28 +56,28 @@ static void	ft_print_move_count(t_data *data)
 	move_count = NULL;
 }
 
-void	ft_player_move(t_data *data, int next_row, int next_col, int keycode, char *asset_name)
+void	ft_player_move(t_data *data, int next_row, int next_col, int keycode)
 {
-	int	current_row;
-	int	current_col;
+	char	*asset_name;
 
-	current_row = data->player_row;
-	current_col = data->player_col;
-	if (data->map[next_row][next_col] == '1' || (data->map[next_row][next_col] == 'E' && data->map_collectible_count > 0))
-		return;
+	asset_name = ft_get_asset_name(keycode);
+	if (data->map[next_row][next_col] == '1' ||
+	(data->map[next_row][next_col] == 'E' && data->map_collectible_count > 0))
+		return ;
 	else if (data->map[next_row][next_col] == 'X')
 		ft_game_over();
-	else if (data->map[next_row][next_col] == 'E' && data->map_collectible_count == 0)
+	else if (data->map[next_row][next_col] == 'E' &&
+	data->map_collectible_count == 0)
 		ft_game_win();
 	else if (data->map[next_row][next_col] == 'C')
 		data->map_collectible_count--;
+	data->map[data->player_row][data->player_col] = '0';
+	data->map[next_row][next_col] = 'P';
+	ft_put_image(data, GROUND, data->player_row, data->player_col);
+	ft_put_image(data, asset_name, next_row, next_col);
 	data->player_row = next_row;
 	data->player_col = next_col;
-	data->player_move_count++;
 	data->player_direction = keycode;
-	data->map[current_row][current_col] = '0';
-	data->map[next_row][next_col] = 'P';
-	ft_put_image_to_window(data, GROUND, current_row, current_col);
-	ft_put_image_to_window(data, asset_name, next_row, next_col);
+	data->player_move_count++;
 	ft_print_move_count(data);
 }

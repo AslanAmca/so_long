@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/28 08:57:37 by aaslan            #+#    #+#              #
-#    Updated: 2023/02/09 06:58:20 by aaslan           ###   ########.fr        #
+#    Updated: 2023/02/10 07:43:40 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC		:= $(wildcard src/*.c)
 UTILS	:= $(wildcard src/utilities/*.c)
 VLDTRS	:= $(wildcard src/map_validators/*.c)
 ANIMS	:= $(wildcard src/animations/*.c)
-OBJS	:= $(SRC:%.c=%.o) $(UTILS:%.c=%.o) $(VLDTRS:%.c=%.o) $(ANIMS:%.c=%.o)
+HELPERS := $(wildcard src/mlx_helpers/*.c)
+OBJS	:= $(SRC:%.c=%.o) $(UTILS:%.c=%.o) $(VLDTRS:%.c=%.o) $(ANIMS:%.c=%.o) $(HELPERS:%.c=%.o)
 
 
 all: $(NAME)
@@ -32,17 +33,17 @@ $(MLX):
 	@clear
 
 clean:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJS)
 	@clear
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 	@make clean -C mlx_linux
 	@clear
 
 re: fclean all
 
 norm:
-	norminette src/*.c src/utilities/*.c src/map_validators/*.c src/animations/*.c
+	@norminette src/so_long.h src/*.c src/utilities/*.c src/map_validators/*.c src/animations/*.c src/mlx_helpers/*.c
 
 .PHONY: all clean fclean re

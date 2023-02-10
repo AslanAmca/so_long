@@ -6,28 +6,12 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 21:19:18 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 05:58:16 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/10 07:38:33 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
-
-void	ft_put_image(t_data *data, char *img_name, int row, int col)
-{
-	int		width;
-	int		height;
-	void	*img;
-
-	row = row * ASSET_SIZE;
-	col = col * ASSET_SIZE;
-	img = mlx_xpm_file_to_image(data->mlx, img_name, &width, &height);
-	if (img == NULL)
-		ft_print_error("Image not found.");
-	mlx_put_image_to_window(data->mlx, data->mlx_window, img, col, row);
-	free(img);
-	img = NULL;
-}
 
 static void	ft_render_map(t_data *data, int row, int col)
 {

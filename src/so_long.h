@@ -6,20 +6,20 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 02:55:41 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 05:57:09 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/10 07:40:24 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "../mlx_linux/mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+# include "../mlx_linux/mlx.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
-# define GAME_NAME "so_long"
+# define GAME_NAME "Cute Jasmine"
 # define ASSET_SIZE 64
 
 // Player Assets
@@ -78,7 +78,7 @@ typedef struct s_enemy {
 
 typedef struct s_data
 {
-	t_enemy *enemy;
+	t_enemy	*enemy;
 
 	int		argument_count;
 	char	*map_name;
@@ -91,27 +91,22 @@ typedef struct s_data
 	int		map_exit_count;
 	int		map_collectible_count;
 
-	// temp 1 for dfs
 	char	**temp_map;
 	int		temp_map_player_can_exit;
 	int		temp_map_collectible_count;
 
-	// temp 2 for dfs with exit
 	char	**temp_map2;
 	int		temp_map2_player_can_exit;
 	int		temp_map2_collectible_count;
 
-	// Player
 	int		player_row;
 	int		player_col;
 	int		player_direction;
 	int		player_move_count;
 
-	// Exıt
 	int		exit_row;
 	int		exit_col;
 
-	// mlx
 	void	*mlx;
 	void	*mlx_window;
 }	t_data;
@@ -143,22 +138,24 @@ void	ft_validate_path(t_data *data);
 void	ft_validate_map(t_data *data);
 
 // moves
-void ft_player_move(t_data *data, int next_row, int next_col, int keycode, char *asset_name);
-void ft_enemy_move(t_data *data);
+void	ft_player_move(t_data *data, int next_row, int next_col, int keycode);
+void	ft_enemy_move(t_data *data);
 
 // animations
-void ft_player_animation(t_data *data);
-void ft_exit_animation(t_data *data);
-void ft_enemy_animation(t_data *data);
+void	ft_player_animation(t_data *data);
+void	ft_exit_animation(t_data *data);
+void	ft_enemy_animation(t_data *data);
 
 void	ft_add_enemy(t_enemy **first_enemy, t_enemy *new_enemy);
 t_enemy	*ft_create_enemy(int row, int col);
 
-// bunlara bakacağız.
-void ft_read_and_fill_map(t_data *data);
-void	ft_create_windows(t_data *data);
-void ft_put_image(t_data *data, char *img_name, int row, int col);
-void ft_render_assets(t_data *data);
-void ft_event_handler(t_data *data);
+// mlx helpers
+void	ft_create_window(t_data *data);
+void	ft_put_image(t_data *data, char *img_name, int row, int col);
+
+// others
+void	ft_read_and_fill_map(t_data *data);
+void	ft_render_assets(t_data *data);
+void	ft_event_handler(t_data *data);
 
 #endif

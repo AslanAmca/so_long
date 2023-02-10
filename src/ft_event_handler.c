@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 07:01:59 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 06:02:42 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/10 07:43:17 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,13 @@ static int	key_press_handler(int keycode, t_data *data)
 	if (keycode == keycode_esc)
 		close_handler(data);
 	if (keycode == keycode_w)
-		ft_player_move
-		(data, data->player_row - 1, data->player_col, keycode, PLAYER_UP_1);
+		ft_player_move(data, data->player_row - 1, data->player_col, keycode);
 	if (keycode == keycode_s)
-		ft_player_move
-		(data, data->player_row + 1, data->player_col, keycode, PLAYER_DOWN_1);
+		ft_player_move(data, data->player_row + 1, data->player_col, keycode);
 	if (keycode == keycode_a)
-		ft_player_move
-		(data, data->player_row, data->player_col - 1, keycode, PLAYER_LEFT_1);
+		ft_player_move(data, data->player_row, data->player_col - 1, keycode);
 	if (keycode == keycode_d)
-		ft_player_move
-		(data, data->player_row, data->player_col + 1, keycode, PLAYER_RIGHT_1);
+		ft_player_move(data, data->player_row, data->player_col + 1, keycode);
 	return (0);
 }
 
