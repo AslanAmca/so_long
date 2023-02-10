@@ -6,45 +6,46 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 05:26:12 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 05:29:40 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/10 06:01:32 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void ft_game_over()
+static void	ft_game_over(void)
 {
 	printf("Game Over! Player touched an enemy patrol.\n");
 	exit(EXIT_SUCCESS);
 }
 
-static void ft_game_win()
+static void	ft_game_win(void)
 {
 	printf("Game Win! All collections have been collected.\n");
 	exit(EXIT_SUCCESS);
 }
 
-static void ft_print_move_count(t_data *data)
+static void	ft_print_move_count(t_data *data)
 {
-	char *move_count;
+	char	*move_count;
+	int		color;
+
 	move_count = ft_itoa(data->player_move_count);
+	color = 0xffffff;
 	ft_put_image_to_window(data, PLAYER_MOVE_COUNT, 0, 0);
 	if (data->player_move_count < 10)
-		mlx_string_put(data->mlx, data->mlx_window, 23, 50, 0xffffff, move_count);
+		mlx_string_put(data->mlx, data->mlx_window, 23, 50, color, move_count);
 	else if (data->player_move_count < 100)
-		mlx_string_put(data->mlx, data->mlx_window, 20, 50, 0xffffff, move_count);
+		mlx_string_put(data->mlx, data->mlx_window, 20, 50, color, move_count);
 	else
-		mlx_string_put(data->mlx, data->mlx_window, 18, 50, 0xffffff, move_count);
-
-	// Memory Allocation Güvenliği için kalabilir.
+		mlx_string_put(data->mlx, data->mlx_window, 18, 50, color, move_count);
 	free(move_count);
 	move_count = NULL;
 }
 
-void ft_player_move(t_data *data, int next_row, int next_col, int keycode, char *asset_name)
+void	ft_player_move(t_data *data, int next_row, int next_col, int keycode, char *asset_name)
 {
-	int current_row;
-	int current_col;
+	int	current_row;
+	int	current_col;
 
 	current_row = data->player_row;
 	current_col = data->player_col;

@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 02:55:41 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 04:47:00 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/10 05:57:09 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,13 @@ void ft_player_animation(t_data *data);
 void ft_exit_animation(t_data *data);
 void ft_enemy_animation(t_data *data);
 
+void	ft_add_enemy(t_enemy **first_enemy, t_enemy *new_enemy);
+t_enemy	*ft_create_enemy(int row, int col);
+
 // bunlara bakacağız.
 void ft_read_and_fill_map(t_data *data);
-void ft_put_image_to_window(t_data *data, char *img_name, int row, int col);
+void	ft_create_windows(t_data *data);
+void ft_put_image(t_data *data, char *img_name, int row, int col);
 void ft_render_assets(t_data *data);
 void ft_event_handler(t_data *data);
 
