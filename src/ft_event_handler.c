@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 07:01:59 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/09 07:03:07 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/10 04:50:01 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int mlx_loop_hook_handler(t_data *data)
 {
 	ft_exit_animation(data);
 	ft_player_animation(data);
+	ft_enemy_animation(data);
+	ft_enemy_move(data);
 	return 0;
 }
 

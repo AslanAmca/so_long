@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 02:55:41 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/09 07:05:44 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/10 04:47:00 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,17 @@
 # define GROUND "assets/ground.xpm"
 # define WALL "assets/wall.xpm"
 
+typedef struct s_enemy {
+	int				enemy_row;
+	int				enemy_col;
+	int				enemy_direction;
+	struct s_enemy	*next;
+}					t_enemy;
+
 typedef struct s_data
 {
+	t_enemy *enemy;
+
 	int		argument_count;
 	char	*map_name;
 
@@ -133,12 +142,14 @@ void	ft_validate_rectangular(t_data *data);
 void	ft_validate_path(t_data *data);
 void	ft_validate_map(t_data *data);
 
-// player move
+// moves
 void ft_player_move(t_data *data, int next_row, int next_col, int keycode, char *asset_name);
+void ft_enemy_move(t_data *data);
 
 // animations
 void ft_player_animation(t_data *data);
 void ft_exit_animation(t_data *data);
+void ft_enemy_animation(t_data *data);
 
 // bunlara bakacağız.
 void ft_read_and_fill_map(t_data *data);
