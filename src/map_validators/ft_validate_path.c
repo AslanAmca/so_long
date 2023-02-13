@@ -6,28 +6,11 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 04:17:13 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/12 22:56:27 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 18:58:45 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-static void	ft_clear_temp_map(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->temp_map[i] != NULL)
-	{
-		free(data->temp_map[i]);
-		free(data->temp_map2[i]);
-		i++;
-	}
-	free(data->temp_map);
-	free(data->temp_map2);
-	data->temp_map = NULL;
-	data->temp_map2 = NULL;
-}
 
 static void	ft_dfs_algorithm(t_data *data, int row, int col)
 {
@@ -71,10 +54,13 @@ void	ft_validate_path(t_data *data)
 	ft_dfs_algorithm(data, data->player_row, data->player_col);
 	ft_dfs_algorithm_with_exit(data, data->player_row, data->player_col);
 	if (data->temp_map_player_can_exit != 1)
-		ft_print_error("Not a valid path as the exit can't be reached.");
+		ft_print_error(data,
+			"Not a valid path as the exit can't be reached.");
 	if (data->temp_map_collectible_count != data->temp_map2_collectible_count)
-		ft_print_error("Exit is preventing the collection.");
+		ft_print_error(data,
+			"Exit is preventing the collection.");
 	if (data->temp_map_collectible_count != 0)
-		ft_print_error("Not a valid way as collectibles are not collected.");
+		ft_print_error(data,
+			"Not a valid way as collectibles are not collected.");
 	ft_clear_temp_map(data);
 }

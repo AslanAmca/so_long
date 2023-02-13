@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 02:55:41 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/13 06:02:51 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 16:44:46 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ enum e_keycode
 
 // utilities
 void	ft_print_string(char *string);
-void	ft_print_error(char *error_message);
+void	ft_print_error(t_data *data, char *error_message);
 int		ft_strlen(char *string);
 int		ft_strcmp(const char *s1, const char *s2);
 char	**ft_split(char const *s, char c);
@@ -151,6 +151,14 @@ int		ft_close_handler(t_data *data, char *message);
 int		ft_key_press_handler(int keycode, t_data *data);
 int		ft_loop_hook_handler(t_data *data);
 void	ft_event_handler(t_data *data);
+
+// cleaners
+void	ft_clear_enemy(t_data *data);
+void	ft_clear_map(t_data *data);
+void	ft_clear_temp_map(t_data *data);
+void	ft_clear_mlx(t_data *data);
+void	ft_clear_only_data(t_data *data);
+void	ft_clear_all_data(t_data *data);
 
 void	ft_add_enemy(t_enemy **first_enemy, t_enemy *new_enemy);
 t_enemy	*ft_create_enemy(int row, int col);

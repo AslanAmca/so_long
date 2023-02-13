@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 03:34:41 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/13 02:38:01 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 16:54:49 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,14 @@ void	ft_read_and_fill_map(t_data *data)
 
 	map_fd = open(data->map_name, O_RDONLY);
 	if (map_fd < 3)
-		ft_print_error("Map file not found.");
+		ft_print_error(data, "Map file not found.");
 	map_string = ft_read_map(map_fd);
 	if (*map_string == '\0')
-		ft_print_error("Map file is empty.");
+	{
+		free(map_string);
+		map_string = NULL;
+		ft_print_error(data, "Map file is empty.");
+	}
 	ft_fill_map(data, map_string);
 	free(map_string);
 	map_string = NULL;

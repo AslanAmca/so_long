@@ -6,7 +6,7 @@
 #    By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/28 08:57:37 by aaslan            #+#    #+#              #
-#    Updated: 2023/02/13 06:03:24 by aaslan           ###   ########.fr        #
+#    Updated: 2023/02/13 19:00:07 by aaslan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ VALIDATORS	:= $(wildcard src/map_validators/*.c)
 ANIMATIONS	:= $(wildcard src/animations/*.c)
 HANDLERS	:= $(wildcard src/handlers/*.c)
 HELPERS		:= $(wildcard src/mlx_helpers/*.c)
-OBJS		:= $(SRC:%.c=%.o) $(UTILS:%.c=%.o) $(VALIDATORS:%.c=%.o) $(ANIMATIONS:%.c=%.o) $(HANDLERS:%.c=%.o) $(HELPERS:%.c=%.o)
+CLEANERS	:= $(wildcard src/cleaners/*.c)
+OBJS		:= $(SRC:%.c=%.o) $(UTILS:%.c=%.o) $(VALIDATORS:%.c=%.o) $(ANIMATIONS:%.c=%.o) $(HANDLERS:%.c=%.o) $(HELPERS:%.c=%.o) $(CLEANERS:%.c=%.o)
 
 
 all: $(NAME)
@@ -45,6 +46,6 @@ fclean: clean
 re: fclean all
 
 norm:
-	@norminette src/so_long.h src/*.c src/utilities/*.c src/map_validators/*.c src/animations/*.c src/handlers/*.c src/mlx_helpers/*.c
+	@norminette src/so_long.h src/*.c src/utilities/*.c src/map_validators/*.c src/animations/*.c src/handlers/*.c src/mlx_helpers/*.c src/cleaners/*.c
 
 .PHONY: all clean fclean re

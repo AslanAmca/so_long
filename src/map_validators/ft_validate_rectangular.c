@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 03:40:18 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/06 23:56:57 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 16:40:51 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_validate_rectangular(t_data *data)
 	{
 		row_col_count = ft_strlen(data->map[row_index]);
 		if (row_col_count != data->map_col_count)
-			ft_print_error("The map must be rectangular.");
+			ft_print_error(data, "The map must be rectangular.");
 		row_index++;
 	}
 }

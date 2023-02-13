@@ -6,13 +6,13 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 04:47:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/13 05:38:52 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 13:58:52 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_enemy_next_direction(t_data *data, t_enemy *temp)
+static void	ft_enemy_next_direction(t_data *data, t_enemy *temp)
 {
 	char	up_row;
 	char	down_row;
@@ -40,7 +40,8 @@ void	ft_enemy_next_direction(t_data *data, t_enemy *temp)
 
 void	ft_enemy_move_row(t_data *data, t_enemy *temp, int row)
 {
-	if (data->map[row][temp->enemy_col] == 'X')
+	if (data->map[row][temp->enemy_col] == 'X' ||
+		data->map[row][temp->enemy_col] == '1')
 		return ;
 	else if (data->map[row][temp->enemy_col] == 'C')
 	{
@@ -64,7 +65,8 @@ void	ft_enemy_move_row(t_data *data, t_enemy *temp, int row)
 
 void	ft_enemy_move_col(t_data *data, t_enemy *temp, int col, char *img_name)
 {
-	if (data->map[temp->enemy_row][col] == 'X')
+	if (data->map[temp->enemy_row][col] == 'X' ||
+		data->map[temp->enemy_row][col] == '1')
 		return ;
 	else if (data->map[temp->enemy_row][col] == 'C')
 	{

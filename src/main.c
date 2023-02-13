@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 10:09:42 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/13 06:02:46 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 18:56:44 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,11 @@ int	main(int argc, char **argv)
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (data == NULL)
-		ft_print_error("Game Data -> Malloc Error");
+		ft_print_error(data, "game data malloc error");
 	ft_init_data(data, argc, argv[1]);
 	ft_validate_map(data);
 	ft_create_window(data);
 	ft_render_assets(data);
 	ft_event_handler(data);
-	ft_close_handler(data, "Game Finish!\n");
 	return (EXIT_SUCCESS);
 }
