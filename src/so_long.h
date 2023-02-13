@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 02:55:41 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 07:40:24 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 06:02:51 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SO_LONG_H
 
 # include "../mlx_linux/mlx.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -78,8 +77,6 @@ typedef struct s_enemy {
 
 typedef struct s_data
 {
-	t_enemy	*enemy;
-
 	int		argument_count;
 	char	*map_name;
 
@@ -109,6 +106,9 @@ typedef struct s_data
 
 	void	*mlx;
 	void	*mlx_window;
+	void	*mlx_image;
+
+	t_enemy	*enemy;
 }	t_data;
 
 enum e_keycode
@@ -145,6 +145,12 @@ void	ft_enemy_move(t_data *data);
 void	ft_player_animation(t_data *data);
 void	ft_exit_animation(t_data *data);
 void	ft_enemy_animation(t_data *data);
+
+// handlers
+int		ft_close_handler(t_data *data, char *message);
+int		ft_key_press_handler(int keycode, t_data *data);
+int		ft_loop_hook_handler(t_data *data);
+void	ft_event_handler(t_data *data);
 
 void	ft_add_enemy(t_enemy **first_enemy, t_enemy *new_enemy);
 t_enemy	*ft_create_enemy(int row, int col);

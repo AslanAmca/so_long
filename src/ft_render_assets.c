@@ -6,12 +6,11 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 21:19:18 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 07:38:33 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 03:26:06 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 static void	ft_render_map(t_data *data, int row, int col)
 {

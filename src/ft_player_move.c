@@ -6,22 +6,20 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 05:26:12 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 07:47:25 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 05:37:53 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_game_over(void)
+static void	ft_game_over(t_data *data)
 {
-	printf("Game Over! Player touched an enemy patrol.\n");
-	exit(EXIT_SUCCESS);
+	ft_close_handler(data, "Game Over! Player touched an enemy patrol.\n");
 }
 
-static void	ft_game_win(void)
+static void	ft_game_win(t_data *data)
 {
-	printf("Game Win! All collections have been collected.\n");
-	exit(EXIT_SUCCESS);
+	ft_close_handler(data, "Game Win! All collections have been collected.\n");
 }
 
 static char	*ft_get_asset_name(int keycode)
@@ -65,10 +63,10 @@ void	ft_player_move(t_data *data, int next_row, int next_col, int keycode)
 	(data->map[next_row][next_col] == 'E' && data->map_collectible_count > 0))
 		return ;
 	else if (data->map[next_row][next_col] == 'X')
-		ft_game_over();
+		ft_game_over(data);
 	else if (data->map[next_row][next_col] == 'E' &&
 	data->map_collectible_count == 0)
-		ft_game_win();
+		ft_game_win(data);
 	else if (data->map[next_row][next_col] == 'C')
 		data->map_collectible_count--;
 	data->map[data->player_row][data->player_col] = '0';

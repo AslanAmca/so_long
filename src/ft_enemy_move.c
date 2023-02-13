@@ -6,7 +6,7 @@
 /*   By: aaslan <aaslan@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 04:47:30 by aaslan            #+#    #+#             */
-/*   Updated: 2023/02/10 07:34:28 by aaslan           ###   ########.fr       */
+/*   Updated: 2023/02/13 05:38:52 by aaslan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ void	ft_enemy_move_row(t_data *data, t_enemy *temp, int row)
 	temp->enemy_row = row;
 	if (data->map[temp->enemy_row][temp->enemy_col] ==
 	data->map[data->player_row][data->player_col])
-	{
-		printf("Game Over! Player touched an enemy patrol.\n");
-		exit(EXIT_SUCCESS);
-	}
+		ft_close_handler(data, "Game Over! Player touched an enemy patrol.\n");
 }
 
 void	ft_enemy_move_col(t_data *data, t_enemy *temp, int col, char *img_name)
@@ -86,10 +83,7 @@ void	ft_enemy_move_col(t_data *data, t_enemy *temp, int col, char *img_name)
 	temp->enemy_col = col;
 	if (data->map[temp->enemy_row][temp->enemy_col] ==
 	data->map[data->player_row][data->player_col])
-	{
-		printf("Game Over! Player touched an enemy patrol.\n");
-		exit(EXIT_SUCCESS);
-	}
+		ft_close_handler(data, "Game Over! Player touched an enemy patrol.\n");
 }
 
 void	ft_enemy_move(t_data *data)
